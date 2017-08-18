@@ -15,7 +15,7 @@ export default class Step extends Component {
       circleTop, titleTop, width, completeOpacity, activeOpacity, defaultOpacity,
       completeTitleOpacity, activeTitleOpacity, defaultTitleOpacity, barStyle, defaultBarColor,
       completeBarColor, defaultBorderColor, completeBorderColor, activeBorderColor,
-      defaultBorderStyle,completeBorderStyle, activeBorderStyle
+      defaultBorderStyle,completeBorderStyle, activeBorderStyle, activeCircleFontColor,
     } = this.props;
 
     return {
@@ -56,8 +56,12 @@ export default class Step extends Component {
         borderStyle: completeBorderStyle,
       },
       index: {
-        lineHeight: `${size + circleFontSize / 4}px`,
+        lineHeight: `${size + circleFontSize / 7}px`,
         color: circleFontColor
+      },
+      activeIndex: {
+        lineHeight: `${size + circleFontSize / 7}px`,        
+        color: activeCircleFontColor,
       },
       title: {
         marginTop: titleTop,
@@ -109,6 +113,23 @@ export default class Step extends Component {
     };
   }
 
+  getInnerContent() {
+    const { active, completed, checkIcon, index, href, onClick } = this.props
+    const styles = this.getStyles();
+
+    if (active) {
+      return <a href={href} onClick={onClick} style={ styles.activeIndex }>{ index + 1 }</a>
+    }
+
+    if (completed) {
+      return <span style={styles.index}>
+        {checkIcon}
+      </span>
+    }
+
+    return <span style={ styles.index }>{ index + 1 }</span>
+  }
+
   render() {
     const { title, index, active, completed, first, isLast, href, onClick } = this.props;
 
@@ -129,11 +150,7 @@ export default class Step extends Component {
     return (
       <div style={ styles.step }>
         <div style={ circleStyle }>
-        {active || completed ? (
-          <a href={href} onClick={onClick} style={ styles.index }>{ index + 1 }</a>
-        ) : (
-          <span style={ styles.index }>{ index + 1 }</span>
-        )}
+          {this.getInnerContent()}
         </div>
         {active || completed ? (
           <a href={href} onClick={onClick} style={ titleStyle }>{ title }</a>
