@@ -32,10 +32,11 @@ export default class Step extends Component {
         backgroundColor: defaultColor,
         borderRadius: '50%',
         textAlign: 'center',
-        padding: 1,
         fontSize: circleFontSize,
         color: circleFontColor,
-        display: 'block',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         opacity: defaultOpacity,
         borderWidth: (defaultBorderColor ? 3 : 0),
         borderColor: defaultBorderColor,
@@ -56,11 +57,11 @@ export default class Step extends Component {
         borderStyle: completeBorderStyle,
       },
       index: {
-        lineHeight: `${size + circleFontSize / 7}px`,
-        color: circleFontColor
+        lineHeight: `${size + circleFontSize / 4}px`,
+        color: circleFontColor,
       },
       activeIndex: {
-        lineHeight: `${size + circleFontSize / 7}px`,        
+        lineHeight: `${size + circleFontSize / 4}px`,        
         color: activeCircleFontColor,
       },
       title: {
