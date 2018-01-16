@@ -123,9 +123,14 @@ export default class Step extends Component {
     }
 
     if (completed) {
-      return <span style={styles.index}>
-        {checkIcon}
-      </span>
+      if (checkIcon) {
+        return ( 
+          <span style={styles.index}>
+            {checkIcon}
+          </span>
+        )
+      }
+      return <span style={ styles.index }>{ index + 1 }</span>
     }
 
     return <span style={ styles.index }>{ index + 1 }</span>
