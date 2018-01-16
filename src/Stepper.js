@@ -1,7 +1,7 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
+import React from 'react'
+import { PropTypes } from 'prop-types'
 
-import Step from './Step';
+import Step from './Step'
 
 const styles = {
   root: {
@@ -14,22 +14,49 @@ const styles = {
     width: '100%',
     margin: '0 auto',
   },
-};
+}
 
 function Stepper({
-  activeStep, steps,
-  activeColor, completeColor, defaultColor, circleFontColor,
-  activeTitleColor, completeTitleColor, defaultTitleColor,
-  size, circleFontSize, titleFontSize,
-  circleTop, titleTop, completeOpacity, activeOpacity, defaultOpacity,
-  completeTitleOpacity, activeTitleOpacity, defaultTitleOpacity, barStyle,
-  defaultBorderColor, completeBorderColor, activeBorderColor, defaultBorderStyle,
-  completeBorderStyle, activeBorderStyle, defaultBarColor, completeBarColor, activeCircleFontColor, defaultCircleFontColor, checkIcon,
+  activeStep,
+  steps,
+  activeColor,
+  completeColor,
+  defaultColor,
+  circleFontColor,
+  activeTitleColor,
+  completeTitleColor,
+  defaultTitleColor,
+  size,
+  circleFontSize,
+  titleFontSize,
+  circleTop,
+  titleTop,
+  completeOpacity,
+  activeOpacity,
+  defaultOpacity,
+  completeTitleOpacity,
+  activeTitleOpacity,
+  defaultTitleOpacity,
+  barStyle,
+  defaultBorderColor,
+  completeBorderColor,
+  activeBorderColor,
+  defaultBorderStyle,
+  completeBorderStyle,
+  activeBorderStyle,
+  defaultBarColor,
+  completeBarColor,
+  activeCircleFontColor,
+  defaultCircleFontColor,
+  checkIcon,
+  titleStyle,
+  circleStyle,
+  barHeight,
 }) {
   return (
-    <div style={ styles.root }>
-      <div style={ styles.stepper }>
-        { steps.map((step, index) => (
+    <div style={styles.root}>
+      <div style={styles.stepper}>
+        {steps.map((step, index) => (
           <Step
             key={index}
             width={100 / steps.length}
@@ -71,16 +98,19 @@ function Stepper({
             activeCircleFontColor={activeCircleFontColor}
             checkIcon={checkIcon}
             defaultCircleFontColor={defaultCircleFontColor}
+            titleStyle={titleStyle}
+            circleStyle={circleStyle}
+            barHeight={barHeight}
           />
-        )) }
+        ))}
       </div>
     </div>
-  );
+  )
 }
 
 Stepper.defaultProps = {
   activeStep: 0,
-};
+}
 
 Stepper.propTypes = {
   activeStep: PropTypes.number,
@@ -112,6 +142,6 @@ Stepper.propTypes = {
   defaultBorderStyle: PropTypes.string,
   completeBorderStyle: PropTypes.string,
   activeBorderStyle: PropTypes.string,
-};
+}
 
-export default Stepper;
+export default Stepper
