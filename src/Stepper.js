@@ -49,8 +49,8 @@ function Stepper({
   activeCircleFontColor,
   defaultCircleFontColor,
   checkIcon,
-  titleStyle,
-  circleStyle,
+  fontFamily,
+  circleCursor,
   barHeight,
 }) {
   return (
@@ -98,8 +98,8 @@ function Stepper({
             activeCircleFontColor={activeCircleFontColor}
             checkIcon={checkIcon}
             defaultCircleFontColor={defaultCircleFontColor}
-            titleStyle={titleStyle}
-            circleStyle={circleStyle}
+            fontFamily={fontFamily}
+            circleCursor={circleCursor}
             barHeight={barHeight}
           />
         ))}
