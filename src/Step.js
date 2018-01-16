@@ -1,22 +1,45 @@
-import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
+import React, { Component } from 'react'
+import { PropTypes } from 'prop-types'
 
 export default class Step extends Component {
   constructor() {
-    super();
-    this.getStyles = this.getStyles.bind(this);
+    super()
+    this.getStyles = this.getStyles.bind(this)
   }
 
   getStyles() {
     const {
-      activeColor, completeColor, defaultColor, circleFontColor,
-      activeTitleColor, completeTitleColor, defaultTitleColor,
-      size, circleFontSize, titleFontSize,
-      circleTop, titleTop, width, completeOpacity, activeOpacity, defaultOpacity,
-      completeTitleOpacity, activeTitleOpacity, defaultTitleOpacity, barStyle, defaultBarColor,
-      completeBarColor, defaultBorderColor, completeBorderColor, activeBorderColor,
-      defaultBorderStyle,completeBorderStyle, activeBorderStyle, activeCircleFontColor, defaultCircleFontColor
-    } = this.props;
+      activeColor,
+      completeColor,
+      defaultColor,
+      circleFontColor,
+      activeTitleColor,
+      completeTitleColor,
+      defaultTitleColor,
+      size,
+      circleFontSize,
+      titleFontSize,
+      circleTop,
+      titleTop,
+      width,
+      completeOpacity,
+      activeOpacity,
+      defaultOpacity,
+      completeTitleOpacity,
+      activeTitleOpacity,
+      defaultTitleOpacity,
+      barStyle,
+      defaultBarColor,
+      completeBarColor,
+      defaultBorderColor,
+      completeBorderColor,
+      activeBorderColor,
+      defaultBorderStyle,
+      completeBorderStyle,
+      activeBorderStyle,
+      activeCircleFontColor,
+      defaultCircleFontColor,
+    } = this.props
 
     return {
       step: {
@@ -38,21 +61,21 @@ export default class Step extends Component {
         alignItems: 'center',
         justifyContent: 'center',
         opacity: defaultOpacity,
-        borderWidth: (defaultBorderColor ? 3 : 0),
+        borderWidth: defaultBorderColor ? 3 : 0,
         borderColor: defaultBorderColor,
-        borderStyle: defaultBorderStyle
+        borderStyle: defaultBorderStyle,
       },
       activeCircle: {
         backgroundColor: activeColor,
         opacity: activeOpacity,
-        borderWidth: (activeBorderColor ? 3 : 0),
+        borderWidth: activeBorderColor ? 3 : 0,
         borderColor: activeBorderColor,
         borderStyle: activeBorderStyle,
       },
       completedCircle: {
         backgroundColor: completeColor,
         opacity: completeOpacity,
-        borderWidth: (completeBorderColor ? 3 : 0),
+        borderWidth: completeBorderColor ? 3 : 0,
         borderColor: completeBorderColor,
         borderStyle: completeBorderStyle,
       },
@@ -61,7 +84,7 @@ export default class Step extends Component {
         color: circleFontColor,
       },
       activeIndex: {
-        lineHeight: `${size + circleFontSize / 4}px`,        
+        lineHeight: `${size + circleFontSize / 4}px`,
         color: activeCircleFontColor,
       },
       title: {
@@ -111,62 +134,76 @@ export default class Step extends Component {
         borderTopColor: completeBarColor,
         opacity: completeOpacity,
       },
-    };
+    }
   }
 
   getInnerContent() {
     const { active, completed, checkIcon, index, href, onClick } = this.props
-    const styles = this.getStyles();
+    const styles = this.getStyles()
 
     if (active) {
-      return <a href={href} onClick={onClick} style={ styles.activeIndex }>{ index + 1 }</a>
+      return (
+        <a href={href} onClick={onClick} style={styles.activeIndex}>
+          {index + 1}
+        </a>
+      )
     }
 
     if (completed) {
       if (checkIcon) {
-        return ( 
-          <span style={styles.index}>
-            {checkIcon}
-          </span>
-        )
+        return <span style={styles.index}>{checkIcon}</span>
       }
-      return <span style={{ ...styles.index, color: this.props.defaultCircleFontColor || styles.index.color }}>{ index + 1 }</span>
+      return (
+        <span
+          style={Object.assign({}, styles.index, {
+            color: this.props.defaultCircleFontColor || styles.index.color,
+          })}
+        >
+          {index + 1}
+        </span>
+      )
     }
 
-    return <span style={ styles.index }>{ index + 1 }</span>
+    return <span style={styles.index}>{index + 1}</span>
   }
 
   render() {
-    const { title, index, active, completed, first, isLast, href, onClick } = this.props;
+    const { title, index, active, completed, first, isLast, href, onClick } = this.props
 
-    const styles = this.getStyles();
+    const styles = this.getStyles()
     const circleStyle = Object.assign(
       styles.circle,
       completed ? styles.completedCircle : {},
       active ? styles.activeCircle : {},
-    );
+    )
     const titleStyle = Object.assign(
       styles.title,
       completed ? styles.completedTitle : {},
       active ? styles.activeTitle : {},
-    );
-    const leftStyle = Object.assign(styles.leftBar, (active || completed) ? styles.completedBar : {});
-    const rightStyle = Object.assign(styles.rightBar, completed ? styles.completedBar : {});
+    )
+    const leftStyle = Object.assign(
+      styles.leftBar,
+      active || completed ? styles.completedBar : {},
+    )
+    const rightStyle = Object.assign(
+      styles.rightBar,
+      completed ? styles.completedBar : {},
+    )
 
     return (
-      <div style={ styles.step }>
-        <div style={ circleStyle }>
-          {this.getInnerContent()}
-        </div>
+      <div style={styles.step}>
+        <div style={circleStyle}>{this.getInnerContent()}</div>
         {active || completed ? (
-          <a href={href} onClick={onClick} style={ titleStyle }>{ title }</a>
+          <a href={href} onClick={onClick} style={titleStyle}>
+            {title}
+          </a>
         ) : (
-          <div style={ titleStyle }>{ title }</div>
+          <div style={titleStyle}>{title}</div>
         )}
-        { !first && <div style={ leftStyle }></div> }
-        { !isLast && <div style={ rightStyle }></div> }
+        {!first && <div style={leftStyle} />}
+        {!isLast && <div style={rightStyle} />}
       </div>
-    );
+    )
   }
 }
 
@@ -186,7 +223,7 @@ Step.defaultProps = {
   defaultBarColor: '#E0E0E0',
   barStyle: 'solid',
   borderStyle: 'solid',
-};
+}
 
 Step.propTypes = {
   width: PropTypes.number.isRequired,
@@ -222,5 +259,5 @@ Step.propTypes = {
   activeBorderColor: PropTypes.string,
   defaultBorderStyle: PropTypes.string,
   completeBorderStyle: PropTypes.string,
-  activeBorderStyle: PropTypes.string
-};
+  activeBorderStyle: PropTypes.string,
+}
