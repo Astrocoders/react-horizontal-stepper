@@ -24,7 +24,7 @@ function Stepper({
   circleTop, titleTop, completeOpacity, activeOpacity, defaultOpacity,
   completeTitleOpacity, activeTitleOpacity, defaultTitleOpacity, barStyle,
   defaultBorderColor, completeBorderColor, activeBorderColor, defaultBorderStyle,
-  completeBorderStyle, activeBorderStyle, defaultBarColor, completeBarColor, activeCircleFontColor, checkIcon,
+  completeBorderStyle, activeBorderStyle, defaultBarColor, completeBarColor, activeCircleFontColor, defaultCircleFontColor, checkIcon,
 }) {
   return (
     <div style={ styles.root }>
@@ -70,6 +70,7 @@ function Stepper({
             completeBarColor={completeBarColor}
             activeCircleFontColor={activeCircleFontColor}
             checkIcon={checkIcon}
+            defaultCircleFontColor={defaultCircleFontColor}
           />
         )) }
       </div>
