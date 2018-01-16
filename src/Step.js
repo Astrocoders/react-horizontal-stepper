@@ -15,7 +15,7 @@ export default class Step extends Component {
       circleTop, titleTop, width, completeOpacity, activeOpacity, defaultOpacity,
       completeTitleOpacity, activeTitleOpacity, defaultTitleOpacity, barStyle, defaultBarColor,
       completeBarColor, defaultBorderColor, completeBorderColor, activeBorderColor,
-      defaultBorderStyle,completeBorderStyle, activeBorderStyle, activeCircleFontColor,
+      defaultBorderStyle,completeBorderStyle, activeBorderStyle, activeCircleFontColor, defaultCircleFontColor
     } = this.props;
 
     return {
@@ -130,7 +130,7 @@ export default class Step extends Component {
           </span>
         )
       }
-      return <span style={ styles.index }>{ index + 1 }</span>
+      return <span style={{ ...styles.index, color: this.props.defaultCircleFontColor || styles.index.color }}>{ index + 1 }</span>
     }
 
     return <span style={ styles.index }>{ index + 1 }</span>
