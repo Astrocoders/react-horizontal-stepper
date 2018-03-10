@@ -99,7 +99,6 @@ export default class Step extends Component {
         lineHeight: `${size + circleFontSize / 4}px`,
         color: activeCircleFontColor,
         fontFamily: fontFamily,
-        cursor: isFunction(onClick) ? 'pointer' : 'default',
       },
       title: {
         marginTop: titleTop,
@@ -164,9 +163,9 @@ export default class Step extends Component {
 
     if (active) {
       return (
-        <a href={href} onClick={handleClick} style={styles.activeIndex}>
+        <span onClick={handleClick} style={styles.activeIndex}>
           {index + 1}
-        </a>
+        </span>
       )
     }
 
