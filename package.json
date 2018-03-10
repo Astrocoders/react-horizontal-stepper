@@ -7,20 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d lib",
     "prepublish": "npm run build",
+    "postinstall": "npm run build",
     "example": "webpack -w -d --config example/webpack.config.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/mu29/react-stepper.git"
   },
-  "keywords": [
-    "facebook",
-    "react",
-    "component",
-    "react-component",
-    "stepper",
-    "step"
-  ],
+  "keywords": ["facebook", "react", "component", "react-component", "stepper", "step"],
   "author": "InJung Chung <mu29@yeoubi.net>",
   "license": "MIT",
   "bugs": {

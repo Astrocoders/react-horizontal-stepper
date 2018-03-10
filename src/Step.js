@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 
+const isFunction = _ => typeof _ === 'function'
+
 export default class Step extends Component {
   constructor() {
     super()
@@ -42,6 +44,8 @@ export default class Step extends Component {
       fontFamily,
       circleCursor,
       barHeight,
+      onClick,
+      completed,
     } = this.props
 
     return {
@@ -89,11 +93,13 @@ export default class Step extends Component {
         lineHeight: `${size + circleFontSize / 4}px`,
         color: circleFontColor,
         fontFamily: fontFamily,
+        cursor: completed && isFunction(onClick) ? 'pointer' : 'default',
       },
       activeIndex: {
         lineHeight: `${size + circleFontSize / 4}px`,
         color: activeCircleFontColor,
         fontFamily: fontFamily,
+        cursor: isFunction(onClick) ? 'pointer' : 'default',
       },
       title: {
         marginTop: titleTop,
@@ -109,11 +115,13 @@ export default class Step extends Component {
         color: activeTitleColor,
         opacity: activeTitleOpacity,
         fontFamily: fontFamily,
+        cursor: isFunction(onClick) ? 'pointer' : 'default',
       },
       completedTitle: {
         color: completeTitleColor,
         opacity: completeTitleOpacity,
         fontFamily: fontFamily,
+        cursor: isFunction(onClick) ? 'pointer' : 'default',
       },
       leftBar: {
         position: 'absolute',
@@ -152,9 +160,11 @@ export default class Step extends Component {
     const { active, completed, checkIcon, index, href, onClick } = this.props
     const styles = this.getStyles()
 
+    const handleClick = e => onClick(e, index)
+
     if (active) {
       return (
-        <a href={href} onClick={onClick} style={styles.activeIndex}>
+        <a href={href} onClick={handleClick} style={styles.activeIndex}>
           {index + 1}
         </a>
       )
@@ -162,13 +172,18 @@ export default class Step extends Component {
 
     if (completed) {
       if (checkIcon) {
-        return <span style={styles.index}>{checkIcon}</span>
+        return (
+          <span onClick={handleClick} style={styles.index}>
+            {checkIcon}
+          </span>
+        )
       }
       return (
         <span
           style={Object.assign({}, styles.index, {
             color: this.props.defaultCircleFontColor || styles.index.color,
           })}
+          onClick={handleClick}
         >
           {index + 1}
         </span>
