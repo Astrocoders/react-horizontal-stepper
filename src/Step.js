@@ -109,12 +109,12 @@ export default class Step extends Component {
         color: defaultTitleColor,
         opacity: defaultTitleOpacity,
         fontFamily: fontFamily,
+        cursor: 'default',
       },
       activeTitle: {
         color: activeTitleColor,
         opacity: activeTitleOpacity,
         fontFamily: fontFamily,
-        cursor: isFunction(onClick) ? 'pointer' : 'default',
       },
       completedTitle: {
         color: completeTitleColor,
@@ -218,7 +218,7 @@ export default class Step extends Component {
     return (
       <div style={styles.step}>
         <div style={circleStyle}>{this.getInnerContent()}</div>
-        {active || completed ? (
+        {completed ? (
           <a href={href} onClick={onClick} style={titleStyle}>
             {title}
           </a>
